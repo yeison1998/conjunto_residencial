@@ -7,21 +7,20 @@ var derechosGimnasio = 0;
 var genero = "";
 var edad = 0;
 var total = 0;
+var totalPersonas = 0;
 
 //Captura datos de entrada
 metrosCuadrados = prompt("Digite los metros cuadrados.");
 
-
 tipoInmueble = prompt('digite el tipo de inmueble  "casa"  o  "apartamento"');
-tipoInmueble = tipoInmueble.toUpperCase();
 
-edad = prompt("¿ Cual es su edad ?");
-genero = prompt('Digite su genero')
-genero = genero.toLowerCase();
+
+totalPersonas = prompt("¿Cuantas personas viven en este inmueble?");
+
+tipoInmueble = tipoInmueble.toUpperCase();
 
 // procesos o calculos del problema.
 valorAdministracion = ValorDeAdministracion(metrosCuadrados, tipoInmueble);
-derechosGimnasio = valorGimansio(edad, genero);
 cuotaAseo = (valorAdministracion * 0.1) + (metrosCuadrados * 1000);
 total = (valorAdministracion + cuotaAseo + derechosGimnasio);
 
@@ -35,9 +34,14 @@ function ValorDeAdministracion(metrosCuadrados, tipoInmueble) {
         document.write("Tipo  de inmueble no valido" + "<br>");
     }
 }
+
+for (var i = 0; i < totalPersonas; i++) {
+    edad = prompt("¿Cual es su edad? " + (i + 1));
+    genero = prompt("Digite su genero " + (i + 1))
+    genero = genero.toLowerCase();
+    derechosGimnasio += valorGimansio(edad, genero);
+}
 function valorGimansio(edad, genero) {
-
-
     switch (genero) {
         case "masculino":
             if (edad < 10) {
@@ -65,11 +69,12 @@ function valorGimansio(edad, genero) {
             } break;
     }
 
+
 }
 
 
 // salida del sistema.
-document.write("Señores del apartamento numero 101, su cuota del mes: ");
+document.write("Señores del apartamento numero 101, su cuota del mes: "+"<br>");
 
 document.write("El valor de la administracion es: " + valorAdministracion + "<br>")
 document.write("El valor de la cuota de aseo es de: " + cuotaAseo + "<br>");
